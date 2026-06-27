@@ -16,7 +16,7 @@ Para facilitar a navegação e a auditoria do projeto, os ativos estão organiza
 
 ---
 
-## 📸 Conheça a Interface e a Modelação
+## 📸 Conheça a Interface e a Modelagem
 Abaixo estão os ecrãs principais do painel interativo e a modelação lógica (Casos de Uso) que sustenta o projeto.
 
 ### Panorama Macro e Alertas
