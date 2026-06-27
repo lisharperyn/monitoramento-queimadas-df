@@ -28,7 +28,7 @@ Abaixo estão os ecrãs principais do painel interativo e a modelação lógica 
 *Figura 2: Análise histórica comparativa. Este ecrã demonstra o impacto das queimadas em diferentes biomas brasileiros, destacando o peso das ocorrências no Cerrado.*
 
 ### Casos de Uso (UML)
-![Modelação do Sistema](images/UML%20Case%20Use%20Diagram_2.png)
+![Modelação do Sistema](images/UML%20Case%20Use%20Diagram.png)
 *Figura 3: Diagrama de Casos de Uso (UML). Ilustra como a comunidade académica interage com as funcionalidades visuais, enquanto a manutenção, auditoria dos dados locais e verificação de consistência ocorrem sob a gestão da administração de dados.*
 
 ---
