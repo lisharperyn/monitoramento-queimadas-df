@@ -1,9 +1,9 @@
 # 📊 Sistema de Monitoramento de Queimadas no Distrito Federal (DF)
 
 ## 📝 Sobre o Projeto
-Este repositório armazena o projeto de extensão universitária do bacharelato em Engenharia de Software, criado para democratizar o acesso à informação ambiental. Desenvolvido para a comunidade acadêmica e local, o painel interativo permite estudar, de forma simples e visual, a evolução e o risco dos focos de calor no bioma Cerrado e no Distrito Federal.
+Este repositório armazena o projeto de extensão universitária do bacharelato em Engenharia de Software, criado para democratizar o acesso à informação ambiental. Desenvolvido para a comunidade acadêmica e local, o painel interativo permite estudar, de forma simples e visual, a evolução e o risco dos focos de calor no Distrito Federal.
 
-A ferramenta recolhe a série histórica de dados abertos do INPE (Instituto Nacional de Pesquisas Espaciais) e transforma-a em inteligência visual, apoiando pesquisas, trabalhos académicos e a consciencialização sobre as alterações climáticas e o impacto das queimadas.
+A ferramenta recolhe a série histórica de dados abertos do INPE (Instituto Nacional de Pesquisas Espaciais) e transforma-a em inteligência visual, apoiando pesquisas, trabalhos acadêmicos e a conscientização sobre as alterações climáticas e o impacto das queimadas.
 
 ---
 
