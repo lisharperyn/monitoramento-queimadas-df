@@ -1,0 +1,9 @@
+let
+    Fonte = Excel.Workbook(File.Contents("F:\Users\Deryn\Documents\Material Faculdade\Atividade Extensionista III\Tabelas DB\area_queimada_por_bioma.xls"), null, true),
+    area_queimada_por_bioma1 = Fonte{[Name="area_queimada_por_bioma"]}[Data],
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(area_queimada_por_bioma1, [PromoteAllScalars=true]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Ano", Int64.Type}, {"Mes", type text}, {"Bioma", type text}, {"Area_Km2", Int64.Type}}),
+    #"Linhas Agrupadas" = Table.Group(#"Tipo Alterado", {"Ano", "Bioma"}, {{"Area_Queimada", each List.Sum([Area_Km2]), type nullable number}}),
+    #"Consulta Acrescentada" = Table.Combine({#"Linhas Agrupadas", area_queimada_por_bioma_2003_24})
+in
+    #"Consulta Acrescentada"

@@ -1,0 +1,7 @@
+let
+    Fonte = Excel.Workbook(File.Contents("F:\Users\Deryn\Documents\Material Faculdade\Atividade Extensionista III\Tabelas DB\coordenadas_regioes_geograficas.xlsx"), null, true),
+    coordenadas_regioes_Sheet = Fonte{[Item="coordenadas_regioes",Kind="Sheet"]}[Data],
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(coordenadas_regioes_Sheet, [PromoteAllScalars=true]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Reegiao_Geografica", type text}, {"Latitude", type number}, {"Longitude", type number}})
+in
+    #"Tipo Alterado"

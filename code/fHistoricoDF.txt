@@ -1,0 +1,36 @@
+let
+    // 1. Conexão
+    Fonte = Csv.Document(File.Contents("F:\Users\Deryn\Documents\Material Faculdade\Atividade Extensionista III\Tabelas DB\historico_estado_distrito_federal.csv"),[Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+    
+    // 2. Promover cabeçalhos e renomear coluna Ano
+    Cabecalhos = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+    ColunasNomeadas = Table.RenameColumns(Cabecalhos,{{ "", "Ano"}}),
+
+    // 3. Remover a coluna Total (horizontal)
+    RemoverColunaTotal = Table.RemoveColumns(ColunasNomeadas,{"Total"}),
+
+    // 4. Unpivot (Transformar os meses em linhas)
+    UnpivotMeses = Table.UnpivotOtherColumns(RemoverColunaTotal, {"Ano"}, "Mês", "Focos_Brutos"),
+
+    // 5. O PULO DO GATO: Manter apenas as primeiras 336 linhas (Dados de 1998 a 2025)
+    // Isso remove Máximo, Média, Mínimo e qualquer erro de rodapé de uma vez só
+    DadosLimpos = Table.FirstN(UnpivotMeses, 336),
+
+    // 6. TRATAMENTO DO "ZERO A MAIS" E NULOS
+    // Substitui nulos por 0 e converte usando en-US para o ponto ser lido como decimal
+    SubstituirNulos = Table.ReplaceValue(DadosLimpos, null, "0", Replacer.ReplaceValue, {"Focos_Brutos"}),
+    SubstituirVazios = Table.ReplaceValue(SubstituirNulos, "", "0", Replacer.ReplaceValue, {"Focos_Brutos"}),
+    
+    TipoFinal = Table.TransformColumnTypes(SubstituirVazios, {
+        {"Ano", Int64.Type}, 
+        {"Mês", type text}, 
+        {"Focos_Brutos", type number}
+    }, "en-US"),
+
+    // 7. Resultado Final (Inteiro)
+    FocosFinais = Table.TransformColumnTypes(TipoFinal, {{"Focos_Brutos", Int64.Type}}),
+    TabelaFinal = Table.RenameColumns(FocosFinais,{{"Focos_Brutos", "Focos"}}),
+    #"Personalização Adicionada" = Table.AddColumn(TabelaFinal, "ID_Data", each [Mês] & "-" & Text.From([Ano])),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"ID_Data", type text}})
+in
+    #"Tipo Alterado"

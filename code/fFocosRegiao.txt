@@ -1,0 +1,7 @@
+let
+    Fonte = Excel.Workbook(File.Contents("F:\Users\Deryn\Documents\Material Faculdade\Atividade Extensionista III\Tabelas DB\bdqueimadas_focos_por_regiao_1998_2025.xls"), null, true),
+    bdqueimadas_focos_por_regiao = Fonte{[Name="bdqueimadas_focos_por_regiao"]}[Data],
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(bdqueimadas_focos_por_regiao, [PromoteAllScalars=true]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Reegiao_Geografica", type text}, {"Ano", Int64.Type}, {"Focos", Int64.Type}})
+in
+    #"Tipo Alterado"
